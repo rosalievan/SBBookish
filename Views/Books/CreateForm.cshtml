@@ -1,0 +1,36 @@
+@using Bookish2.Models.Requests;
+@model CreateBookRequest;
+@using Bookish2.Models;
+
+@{
+    ViewData["Title"] = "Add Books";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Adding Books</h1>
+    <ul>
+        @foreach (Author author in ViewBag.Authors)
+        {
+            <li>@author.Name</li>
+        }
+    </ul>
+    <form asp-controller = "Books" asp-action = "Create" method = "post">
+        <label>
+            Title
+            <input asp-for="Title" type = "text">
+        </label>
+        <label>
+            Blurb
+            <input asp-for = "Blurb" type = "text">
+        </label>
+        <label>
+            ImageUrl
+            <input asp-for = "ImageUrl" type ="ImageUrl">
+        </label>
+        <label>
+            Author
+            <select asp-for = "Authors[0]" asp-items = "@ViewBag.Authors"></select>
+        </label>
+        <input type="submit" value="Add Book">
+    </form>
+</div>
